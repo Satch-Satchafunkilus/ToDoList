@@ -20,11 +20,7 @@ class ToDo {
     init(
         item: String = "",
         reminderIsOn: Bool = false,
-        dueDate: Date = Calendar.current.date(
-            byAdding: .day,
-            value: 1,
-            to: Date.now
-        )!,
+        dueDate: Date = Calendar.current.date(byAdding: .day, value: 1, to: Date.now)!,
         notes: String = "",
         isCompleted: Bool = false
     ) {
@@ -33,6 +29,17 @@ class ToDo {
         self.dueDate = dueDate
         self.notes = notes
         self.isCompleted = isCompleted
+    }
+    
+    static func purgeData() {
+        let path = URL.documentsDirectory.appending(components: "toDos")
+        let data = try? JSONEncoder().encode("")
+        
+        do {
+            try data?.write(to: path)
+        } catch {
+            print("😡 ERROR: Could not Purge Data!, \(error.localizedDescription)")
+        }
     }
 }
 

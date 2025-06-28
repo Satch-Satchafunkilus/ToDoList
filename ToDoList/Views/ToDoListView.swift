@@ -120,6 +120,7 @@ struct SortedToDoListView: View {
         .listStyle(.plain)
     }
 }
+
 struct ToDoListView: View {
     @State private var sheetIsPresented = false
     @State private var sortSelection: SortOption = .asEntered
@@ -144,7 +145,7 @@ struct ToDoListView: View {
                             Image(systemName: "plus")
                         }
                     }
-                    
+
                     ToolbarItem(placement: .bottomBar) {
                         Picker("", selection: $sortSelection) {
                             ForEach(SortOption.allCases, id: \.self) {
